@@ -136,9 +136,12 @@ int main()
     });
 
     CROW_ROUTE(app, "/add_mustache1")
-    ({
-       auto page = crow::mustache::load("path/to/template.html");
-       
+    ([](){
+       auto page = crow::mustache::load("index.html");
+       crow::mustache::context ctx;
+       ctx["name"] = "World";
+       auto result = page.render(ctx);
+       return result;
     });
 
     // Compile error with message "Handler type is mismatched with URL paramters"
