@@ -6,7 +6,8 @@ FROM mcr.microsoft.com/vscode/devcontainers/base:0-${VARIANT}
 
 #** [Optional] Uncomment this section to install additional packages. **
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends build-essential libboost-all-dev cmake netcat gdb
+    && apt-get -y install --no-install-recommends build-essential libboost-all-dev cmake netcat gdb \ 
+                                                  clang  clangd  clang-format  clang-tidy  lld
 
 RUN git clone -b v1.0 https://github.com/CrowCpp/Crow.git /tmp/crow-src  &&  \
     cd /tmp/crow-src                                                     &&  \
